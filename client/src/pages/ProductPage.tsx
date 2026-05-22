@@ -13,9 +13,9 @@ import {
 import API from '../config/api';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
-import Loading from '../components/loading';
-import ProductCard from '../components/productcard';
-import { dummyReviewSection } from '../assets/assets';
+import Loading from '../components/Loading';
+import ProductCard from '../components/ProductCard';
+import { dummyReviewSection } from '../assets/grocery-assets';
 
 const ProductPage = () => {
   const { id } = useParams(); // [2]
@@ -69,9 +69,9 @@ const ProductPage = () => {
   const handleMinus = () => { // [10]
     if (inCart) {
       if (cartItem.quantity > 1) {
-        updateQuantity(product.id, cartItem.quantity - 1);
+        updateQuantity(product._id, cartItem.quantity - 1);
       } else {
-        removeFromCart(product.id);
+        removeFromCart(product._id);
       }
     } else {
       setLocalQuantity((prev) => Math.max(1, prev - 1));

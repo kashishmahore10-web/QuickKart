@@ -6,11 +6,11 @@ import { inngest, functions } from './inngest/index.js'; // Inngest client and f
 import authRouter from './routes/authRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
-import orderRouter from './routes/orderRoutes.js'
+import orderRouter from './routes/orderRoutes.js';
 import addressRouter from './routes/addressRoutes.js';
-import adminRouter from './routes/adminRoutes';
-import deliveryPartnerRouter from './routes/deliveryPartnerRoutes';
-import { stripeWebhooks } from './controllers/webhooks'; // Stripe webhook controller [2]
+import adminRouter from './routes/adminRoutes.js';
+import deliveryPartnerRouter from './routes/deliveryPartnerRoutes.js';
+import { stripeWebhooks } from './controllers/webhook.js';// Stripe webhook controller [2]
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Configured for port 5000 [3]

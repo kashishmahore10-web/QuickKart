@@ -3,10 +3,10 @@ import { useSearchParams } from 'react-router-dom';
 import { Home, SlidersHorizontal, ChevronDown } from 'lucide-react';
 import API from '../config/api';
  import { Product } from '../types';
-import Loading from '../components/loading';
-import ProductCard from '../components/ProdutCard';
-import FilterPanel from '../components/filterpanel';
-import { categoriesData } from '../assets/assets';
+import Loading from '../components/Loading';
+import ProductCard from '../components/ProductCard';
+import FilterPanel from '../components/FilterPanel';
+import { categoriesData } from '../assets/grocery-assets';
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();

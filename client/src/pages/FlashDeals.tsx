@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Zap } from 'lucide-react';
 import { toast } from 'react-hot-toast';
-import API from '../config/api';
+import {API} from '../config/api';
 import { Product } from '../types';
-import Loading from '../components/loading';
-import ProductCard from '../components/productcard';
+import Loading from '../components/Loading';
+import ProductCard from '../components/ProductCard';
 
 const FlashDeals = () => {
   const [products, setProducts] = useState<Product[]>([]);

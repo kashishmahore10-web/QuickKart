@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, MapPin, Phone } from 'lucide-react';
 import API from '../config/api'; [4]
 import { Order } from '../types'; [5]
-import Loading from '../components/loading'; [6]
+import Loading from '../components/Loading'; [6]
 import OrderOTP from '../components/order-tracking/orderotp'; [2]
 import LiveMap from '../components/order-tracking/livemap'; [7]
 import OrderTimeline from '../components/order-tracking/ordertimeline'; [3]

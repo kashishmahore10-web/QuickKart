@@ -1,4 +1,4 @@
-import { Leaf, Truck, Shield, Clock } from 'lucide-react';
+import { Leaf, Truck, Shield, Clock, MailIcon, PhoneIcon, MapPinIcon } from 'lucide-react';
 import hero_bg from './hero_bg.png';
 import fruitVeg from './fruits_vegetables.png';
 import bakery from './bakery.png';
@@ -10,9 +10,14 @@ import snacks from './snacks.png';
 import pantry from './pantry_staples.png';
 import personal from './personal_care.png';
 import baby from './baby_care.png';
+import { SiFacebook, SiInstagram, SiX } from '@icons-pack/react-simple-icons';
+
+export const assests = {
+    hero_bg,
+};
 
 export const heroSectionData = {
-    hero_image: hero_bg,
+    description: "Fresh, organic groceries delivered from local farms to your doorstep. Quality you can  taste, convenience you deserve.",
     hero_title: "Fresh Groceries at Your Doorstep",
     hero_subtitle: "Get fresh, organic produce delivered to your home in minutes",
     hero_cta: "Shop Now",
@@ -40,6 +45,10 @@ export const heroSectionData = {
     ]
 };
 
+export const deliveryPartnerLoginImage =
+  "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=200";
+
+
 export const appPromoBannerData = {
     title: "Get fresh groceries in minutes",
     description: "Download the Instacart app for exclusive deals, real-time tracking, and the freshest selection delivered right to your door."
@@ -57,6 +66,70 @@ export const categoriesData = [
     { slug: "personal-care", name: "Personal Care", image: personal },
     { slug: "baby-care", name: "Baby Care", image: baby }
 ];
+
+
+export const footerData = { 
+  brand: {
+    name: "Instacart",
+    description: "Nourish your home with Earth's finest products.",
+    socials: [
+      { icon: SiFacebook, link: "#" },
+      { icon: SiX, link: "#" },
+      { icon: SiInstagram, link: "#" }
+    ]
+  },
+  sections: [
+    {
+      title: "Quick Links",
+      links: [
+        { label: "Home", to: "/" },
+        { label: "Products", to: "/products" },
+        { label: "Deals", to: "/deals" }
+      ]
+    },
+    {
+      title: "Customer Service",
+      links: [
+        { label: "Contact Us", to: "/contact" },
+        { label: "FAQs", to: "/faq" }
+      ]
+    }
+  ],
+  contact: [
+    { icon: MapPinIcon, text: "123 Grocery St, Food City" },
+    { icon: PhoneIcon, text: "+1 234 567 890" },
+    { icon: MailIcon, text: "support@instacart.com" }
+  ],
+  bottom: {
+    copyright: "© 2026 Instacart. All rights reserved.",
+    links: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" }
+    ]
+  }
+};
+
+// Dynamic UI Status Colors [16]
+export const statusColors: Record<string, string> = { 
+  placed: "bg-blue-100 text-blue-700",
+  confirmed: "bg-indigo-100 text-indigo-700",
+  assigned: "bg-purple-100 text-indigo-700",
+  packed: "bg-yellow-100 text-yellow-700",
+  "out for delivery": "bg-orange-100 text-orange-700",
+  delivered: "bg-green-100 text-green-700",
+  cancelled: "bg-red-100 text-red-700"
+};
+
+// Main Assets Object [17]
+export const assets = {
+  deliveryTruck: "delivery_truck_image_url" 
+};
+export const iconsForLeafpad = {
+  truck: "https://cdn-icons-png.flaticon.com/512/3097/3097180.png",
+  destination: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+};
+
+
 
 export const dummyProducts = [
     {

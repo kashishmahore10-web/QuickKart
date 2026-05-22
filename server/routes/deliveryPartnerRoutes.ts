@@ -7,7 +7,7 @@ import {
   cancelDelivery, 
   updateDeliveryStatus, 
   updateLocation 
-} from '../controllers/deliveryPartnerController.js';
+} from '../controllers/deliveryPartnerController.js'; // Delivery partner controller functions
 import deliveryAuth from '../middleware/deliveryAuth.js'; // Referred to as delivery o in the sources
 
 const deliveryPartnerRouter = express.Router();
