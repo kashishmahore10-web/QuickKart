@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { dummyProducts } from '../../assets/grocery-assets';
-import { Product } from '../../types';
+
+import { Address, Product } from '../../types';
 import { Link } from 'react-router';
 import { ArrowRightIcon } from 'lucide-react';
 import ProductCard from '../ProductCard';
+import API from '../../config/api';
+
 
 const PopularProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    
+    
 
     useEffect(() => {
-        setProducts(dummyProducts.slice(0, 10));
-    }, [])
+  const fetchProducts = async () => {
+    try {
+      const response = await API.get(
+        "/products?limit=10&sort=rating"
+      );
+
+      setProducts(response?.data?.data || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  fetchProducts();
+}, []);
 
   return (
     <section className='pb-16'>
@@ -28,7 +44,9 @@ const PopularProducts = () => {
             </div>
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4
             xl:gap-8'>
-                {products.map((product)=>(<ProductCard key={product._id} product={product}/>))}
+                {products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                ))}
             </div>
         </div>
 

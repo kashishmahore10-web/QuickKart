@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Home, SlidersHorizontal, ChevronDown } from 'lucide-react';
 import API from '../config/api';
- import { Product } from '../types';
+import { Product } from '../types';
 import Loading from '../components/Loading';
 import ProductCard from '../components/ProductCard';
 import FilterPanel from '../components/FilterPanel';

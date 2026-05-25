@@ -3,14 +3,14 @@ import { Plus, MapPin } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import API from '../config/api';
 import { Address } from '../types';
-import { useAuth } from '../context/authcontext'; // Component uses 'useAuth' or 'useO' context
-import Loading from '../components/loading';
-import AddressCard from '../components/addresscard';
+import { useAuth } from '../context/AuthContext'; // Component uses 'useAuth' or 'useO' context
+import Loading from '../components/Loading';
+import AddressCard from '../components/AddressCard';
 import AddressForm from '../components/AddressForm';
 
 const Addresses = () => {
   const { updateUser } = useAuth(); // Access global user update function [4]
-  const [addresses, setAddresses] = useState<Address[]>([]);
+ const [addresses, setAddresses] = useState<Address[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -125,7 +125,7 @@ const Addresses = () => {
       zip: address.zip,
       isDefault: address.isDefault
     });
-    setEditingId(address.id);
+    setEditingId(address._id);
     setShowForm(true);
   };
 
@@ -161,7 +161,7 @@ const Addresses = () => {
           <div className="grid gap-4">
             {addresses.map((address) => (
               <AddressCard
-                key={address.id}
+                key={address._id}
                 address={address}
                 onEditHandler={onEditHandler}
                 setAddresses={setAddresses}

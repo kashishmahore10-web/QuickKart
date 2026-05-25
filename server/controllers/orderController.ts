@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import {prisma}  from '../config/prisma.js';
-import { inngest } from '../inngest';
+import { inngest } from '../inngest/index.js';
 import Stripe from 'stripe';
 
 export const createOrder = async (req: Request, res: Response) => {

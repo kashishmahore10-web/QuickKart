@@ -10,7 +10,7 @@ import orderRouter from './routes/orderRoutes.js';
 import addressRouter from './routes/addressRoutes.js';
 import adminRouter from './routes/adminRoutes.js';
 import deliveryPartnerRouter from './routes/deliveryPartnerRoutes.js';
-import { stripeWebhooks } from './controllers/webhook.js';// Stripe webhook controller [2]
+import { stripeWebhooks } from './controllers/webhooks.js';// Stripe webhook controller [2]
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Configured for port 5000 [3]
@@ -52,5 +52,5 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 // 6. Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running at localhost:${PORT}`); // [3, 5]
+  console.log(`Server is running at http://localhost:${PORT}`); // [3, 5]
 });

@@ -4,9 +4,9 @@ import { Package, Calendar, ChevronRight } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import API from '../config/api';
 import { Order } from '../types';
-import { useCart } from '../context/cartcontext';
-import Loading from '../components/loading';
-import { statusColors } from '../assets/assets';
+import { useCart } from '../context/CartContext';
+import Loading from '../components/Loading';
+import { statusColors } from '../assets/grocery-assets';
 
 const MyOrders = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -89,15 +89,15 @@ const MyOrders = () => {
           <div className="space-y-4">
             {orders.map((order) => (
               <Link
-                key={order.id}
-                to={`/orders/${order.id}`}
+                key={order._id}
+                to={`/orders/${order._id}`}
                 className="block bg-white p-6 rounded-3xl border border-app-border hover:border-app-green/30 transition-all group"
               >
                 {/* Header Row: ID, Date, Status */}
                 <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
                   <div>
                     <p className="text-xs font-bold text-app-green uppercase tracking-wider mb-1">
-                      Order #{order.id.slice(-8).toUpperCase()}
+                      Order #{order._id.slice(-8).toUpperCase()}
                     </p>
                     <div className="flex items-center gap-2 text-gray-500">
                       <Calendar className="size-4" />

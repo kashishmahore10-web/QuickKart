@@ -2,9 +2,10 @@ import { ArrowRightIcon, BikeIcon, ChevronDownIcon, LogOutIcon, MapPinIcon, Menu
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-    const user: any = null
+    const { user, logout } = useAuth();
     const {cartCount, setIsCartOpen} = useCart()
     const [searchQuery, setSearchQuery] = useState("")
     const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -21,6 +22,7 @@ const Navbar = () => {
 
     const handleLogout = () =>{
         setUserMenuOpen(false)
+        logout();
         navigate("/");
     }
     return (

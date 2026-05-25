@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+
 import { 
   Home, 
   ArrowLeft, 
@@ -15,7 +16,7 @@ import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import Loading from '../components/Loading';
 import ProductCard from '../components/ProductCard';
-import { dummyReviewSection } from '../assets/grocery-assets';
+import dummyReviewsSection  from '../assets/grocery-assets';
 
 const ProductPage = () => {
   const { id } = useParams(); // [2]
@@ -45,7 +46,7 @@ const ProductPage = () => {
       })
       .then((res) => {
         // Filter out the current product from related products [6]
-        setRelatedProducts(res.data.products.filter((p: Product) => p.id !== id));
+        setRelatedProducts(res.data.products.filter((p: Product) => p._id !== id));
       })
       .catch(() => {
         navigate('/products'); // Redirect if product not found [6]
@@ -59,7 +60,7 @@ const ProductPage = () => {
   if (!product) return null; // [7]
 
   // Check if item is already in cart to sync quantities [7]
-  const cartItem = items.find((item) => item.product.id === product.id);
+  const cartItem = items.find((item) => item.product._id === product._id);
   const inCart = !!cartItem;
   const displayQuantity = inCart ? cartItem.quantity : localQuantity;
 
@@ -80,7 +81,7 @@ const ProductPage = () => {
 
   const handlePlus = () => { // [11]
     if (inCart) {
-      updateQuantity(product.id, cartItem.quantity + 1);
+      updateQuantity(product._id, cartItem.quantity + 1);
     } else {
       setLocalQuantity((prev) => prev + 1);
     }
@@ -225,7 +226,7 @@ const ProductPage = () => {
         {product.reviewCount > 0 && (
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Customer Reviews</h2>
-            {dummyReviewSection({ product })}
+            dummyReviewsSection( product )
           </div>
         )}
 
@@ -243,7 +244,7 @@ const ProductPage = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
               {relatedProducts.slice(0, 5).map((item) => (
-                <ProductCard key={item.id} product={item} />
+                <ProductCard key={item._id} product={item} />
               ))}
             </div>
           </div>

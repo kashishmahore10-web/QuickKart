@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { BikeIcon, Loader2Icon, LockIcon, MailIcon, UserIcon } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const hero_bg = new URL('../assets/grocery-assets/hero_bg.png', import.meta.url).href;
 
@@ -11,11 +12,23 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const { login, register } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true);
-    setTimeout(() => window.location.href = "/", 1000);
+    try{ 
+      if(isLoginstate){
+        await login(email, password)
+      } else {
+        await register(name, email, password)
+      }
+    } catch (error: any) {
+      setError(error.response?.data?.message || error.message);
+    } finally {
+      setLoading(false);
+    }
+
   }
 
 

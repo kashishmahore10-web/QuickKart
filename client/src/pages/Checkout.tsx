@@ -3,27 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, MapPin, CreditCard, Check, ChevronRight } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import API from '../config/api';
-import { useCart } from '../context/cartcontext';
-import { useAuth } from '../context/authcontext';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { Address } from '../types';
-import CheckoutAddress from '../components/checkout/checkoutaddress';
-import CheckoutPayment from '../components/checkout/checkoutpayment';
-import CheckoutReview from '../components/checkout/checkoutreview';
+import CheckoutAddress from '../components/Checkout/CheckoutAddress';
+import CheckoutPayment from '../components/Checkout/CheckoutPayment';
+import CheckoutReview from '../components/Checkout/CheckoutReview';
 
 const Checkout = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { items, cartTotal, clearCart } = useCart();
+  const [products, setProducts] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
   const [step, setStep] = useState('address'); // address, payment, review [1]
   const [loading, setLoading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState('card'); // card, cash [2]
+  const [paymentMethod, setPaymentMethod] = useState('card'); 
+  // card, cash [2]
   
   const currency = import.meta.env.VITE_CURRENCY_SYMBOL || '$';
 
   // Initialize address state with default values [3]
-  const [address, setAddress] = useState<Address>({
-    id: '',
+const [addresses, setAddresses] = useState<Address[]>([]);({
+    
     label: 'Home',
     address: '',
     city: '',
@@ -47,13 +50,22 @@ const Checkout = () => {
   ];
 
   // Populate address from user's default address on load [5, 6]
-  useEffect(() => {
-    if (user?.addresses?.length) {
-      const defaultAddr = user.addresses.find((a: any) => a.isDefault) || user.addresses;
-      setAddress(defaultAddr);
-    }
-  }, [user]);
+useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const response = await API.get(
+        "/products?limit=10&sort=rating"
+      );
 
+      setProducts(response?.data?.products || []);
+    } catch (error) {
+      console.log(error);
+      setProducts([]);
+    }
+  };
+
+  fetchProducts();
+}, []);
   const handlePlaceOrder = async () => {
     setLoading(true);
     try {
@@ -63,7 +75,7 @@ const Checkout = () => {
           product: item.product._id,
           quantity: item.quantity
         })),
-        shippingAddress: address,
+        shippingAddress: addresses,
         paymentMethod
       };
 
@@ -146,8 +158,8 @@ const Checkout = () => {
             {/* Conditional rendering of sub-components based on current step [15, 16] */}
             {step === 'address' && (
               <CheckoutAddress 
-                address={address} 
-                setAddress={setAddress} 
+                address={addresses} 
+                setAddress={setAddresses} 
                 setStep={setStep} 
                 user={user} 
               />
@@ -159,15 +171,15 @@ const Checkout = () => {
                 setStep={setStep} 
               />
             )}
-            {step === 'review' && (
-              <CheckoutReview 
-                address={address} 
-                items={items} 
-                handlePlaceOrder={handlePlaceOrder} 
-                loading={loading} 
-                total={cartTotal} 
-              />
-            )}
+           {step === 'review' && selectedAddress && (
+  <CheckoutReview
+    address={selectedAddress}
+    items={items}
+    handlePlaceOrder={handlePlaceOrder}
+    loading={loading}
+    total={cartTotal}
+  />
+)}
           </div>
 
           {/* Order Summary Sidebar [17-20] */}

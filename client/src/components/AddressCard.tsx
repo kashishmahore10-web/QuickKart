@@ -2,7 +2,7 @@ import React from 'react'; // Note: Passage [4] mentions removing this if unused
 import { MapPin, Pencil, Trash2, Check } from 'lucide-react';
 import API from '../config/api';
 import { Address } from '../types';
-import { useAuth } from '../context/authcontext';
+import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 
 interface AddressCardProps {
@@ -71,7 +71,7 @@ const AddressCard = ({ address, onEditHandler, setAddresses }: AddressCardProps)
         </button>
         
         <button 
-          onClick={() => handleDelete(address.id)} // Triggers delete logic [3]
+          onClick={() => handleDelete(address._id)} // Triggers delete logic [3]
           className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
         >
           <Trash2 className="size-4" /> [3]

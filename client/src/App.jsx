@@ -21,12 +21,12 @@ import AdminDashboard from './pages/admin/AdminDashboard'; // [11]
 import AdminProducts from './pages/admin/AdminProducts'; // [11]
 import AdminProductForm from './pages/admin/AdminProductForm'; // [11]
 import AdminOrders from './pages/admin/AdminOrders'; // [12]
-import AdminDeliveryPartners from './pages/admin/AdminDeliveryPartners'; // [12]
+import AdminDeliveryPartners from "./pages/admin/AdminDeliveryPartners";
 
 // Delivery Partner Pages
 import DeliveryLogin from './pages/delivery/DeliveryLogin'; // [12]
 import DeliveryLayout from './pages/delivery/DeliveryLayout'; // [12, 13]
-import DeliveryDashboard from './pages/delivery/DeliveryDashboard'; // [13]
+import DeliveryDashboard from './pages/delivery/DeliveryDashboard'
 
 const App = () => {
   return (

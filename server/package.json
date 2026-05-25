@@ -7,7 +7,7 @@
     "start": "tsx server.ts",
     "server": "nodemon --exec tsx server.ts",
     "build": "tsc",
-    "seed": "tsx seeds.ts"
+    "seed": "tsx seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,8 @@
     "inngest": "^4.4.0",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
+    "nodemailer": "^8.0.7",
+    "seed": "^0.4.4",
     "stripe": "^22.1.1"
   },
   "devDependencies": {
@@ -34,6 +36,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.1.0",
     "@types/node": "^25.9.1",
+    "@types/nodemailer": "^8.0.0",
     "nodemon": "^3.1.14",
     "prisma": "^7.8.0",
     "ts-node": "^10.9.2",

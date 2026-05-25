@@ -31,7 +31,7 @@ function seededRandom(seed: string) {
     return () => { h = (h ^ (h >>> 16)) * 0x45d9f3b; h = (h ^ (h >>> 16)) * 0x45d9f3b; h ^= h >>> 16; return (h >>> 0) / 0xffffffff; };
 }
 
-export default function DummyReviewsSection({ product }: { product: Product }) {
+export default function dummyReviewsSection({ product }: { product: Product }) {
     const reviews = useMemo(() => {
         const rng = seededRandom(product._id);
         const count = Math.min(product.reviewCount, 6);

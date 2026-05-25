@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Zap } from 'lucide-react';
 import { toast } from 'react-hot-toast';
-import {API} from '../config/api';
+import API from '../config/api';
 import { Product } from '../types';
 import Loading from '../components/Loading';
 import ProductCard from '../components/ProductCard';
@@ -58,7 +58,7 @@ const FlashDeals = () => {
             {products.map((product) => (
               // Only display product if it is in stock [5]
               product.stock > 0 && (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product._id} product={product} />
               )
             ))}
           </div>
